@@ -19,6 +19,10 @@
 **目的**: コンパイル済みバイナリを実行するエンドツーエンドテスト
 **パターン**: `env!("CARGO_BIN_EXE_hyetograph-cli")`でバイナリを特定、`tempfile`で出力を隔離
 
+### CI (`.github/workflows/`)
+**目的**: GitHub ActionsによるCI自動化
+**パターン**: pushトリガーで品質チェック・ビルド・テストを順次実行する単一ワークフロー
+
 ### 仕様書 (`.kiro/specs/`)
 **目的**: Spec-Driven Developmentワークフローに基づくフィーチャー仕様
 **パターン**: `{feature-name}/`配下に`spec.json`、`requirements.md`、`design.md`、`tasks.md`、`research.md`

@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-use anyhow::{bail, Result};
+use anyhow::{Result, bail};
 
 use crate::cli::Cli;
 use crate::types::{DistributionPattern, RainfallParams};
@@ -64,13 +64,11 @@ pub fn validate(cli: &Cli) -> Result<ValidatedParams> {
         );
     }
 
-    if let Some(parent) = cli.output.parent() {
-        if !parent.as_os_str().is_empty() && !parent.exists() {
-            bail!(
-                "Output directory does not exist: {}",
-                parent.display()
-            );
-        }
+    if let Some(parent) = cli.output.parent()
+        && !parent.as_os_str().is_empty()
+        && !parent.exists()
+    {
+        bail!("Output directory does not exist: {}", parent.display());
     }
 
     Ok(ValidatedParams {

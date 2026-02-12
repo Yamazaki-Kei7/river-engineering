@@ -6,23 +6,16 @@ use crate::types::HyetographEntry;
 
 /// ハイエトグラフデータをCSVファイルに出力する
 pub fn write(data: &[HyetographEntry], output_path: &Path) -> Result<()> {
-    let mut wtr =
-        csv::Writer::from_path(output_path).with_context(|| {
-            format!(
-                "Failed to create CSV file: {}",
-                output_path.display()
-            )
-        })?;
+    let mut wtr = csv::Writer::from_path(output_path)
+        .with_context(|| format!("Failed to create CSV file: {}", output_path.display()))?;
 
     for entry in data {
-        wtr.serialize(entry).with_context(|| {
-            format!("Failed to write CSV record to {}", output_path.display())
-        })?;
+        wtr.serialize(entry)
+            .with_context(|| format!("Failed to write CSV record to {}", output_path.display()))?;
     }
 
-    wtr.flush().with_context(|| {
-        format!("Failed to flush CSV file: {}", output_path.display())
-    })?;
+    wtr.flush()
+        .with_context(|| format!("Failed to flush CSV file: {}", output_path.display()))?;
 
     Ok(())
 }
