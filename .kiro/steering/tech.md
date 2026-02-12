@@ -44,10 +44,18 @@
 - Rust stable toolchain（Edition 2024）
 - Cargo
 
+### CI
+- GitHub Actions（`.github/workflows/ci.yml`）
+- pushイベントで自動実行: `cargo fmt --check` → `cargo clippy -D warnings` → `cargo build` → `cargo test`
+- Rust stable toolchain + `Swatinem/rust-cache` によるキャッシュ
+- Linux（`ubuntu-latest`）ランナー、`libfontconfig1-dev`がplotters依存として必要
+
 ### よく使うコマンド
 ```bash
 # ビルド: cargo build
 # テスト: cargo test
+# lint:   cargo clippy --all-targets --all-features -- -D warnings
+# fmt:    cargo fmt -- --check
 # 実行:   cargo run -- 0.75 5.411 1557.825 10 2 --pattern center --format both
 ```
 
