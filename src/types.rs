@@ -27,37 +27,27 @@ pub struct HyetographEntry {
 }
 
 /// 雨量分布パターン
-#[derive(Debug, Clone, Copy, PartialEq, Eq, ValueEnum)]
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq, ValueEnum)]
 pub enum DistributionPattern {
     /// 前方集中型（パターン1）
     Front,
     /// 中央集中型（パターン2）
+    #[default]
     Center,
     /// 後方集中型（パターン3）
     Rear,
 }
 
-impl Default for DistributionPattern {
-    fn default() -> Self {
-        Self::Center
-    }
-}
-
 /// 出力形式
-#[derive(Debug, Clone, Copy, PartialEq, Eq, ValueEnum)]
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq, ValueEnum)]
 pub enum OutputFormat {
     /// PNGのみ
+    #[default]
     Png,
     /// CSVのみ
     Csv,
     /// PNG + CSV
     Both,
-}
-
-impl Default for OutputFormat {
-    fn default() -> Self {
-        Self::Png
-    }
 }
 
 #[cfg(test)]
