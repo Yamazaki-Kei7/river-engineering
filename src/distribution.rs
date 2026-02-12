@@ -104,8 +104,8 @@ mod tests {
     fn rear_pattern_places_ascending_from_start() {
         let result = arrange(&INCREMENTS, DistributionPattern::Rear, T);
         let expected = [
-            13.465, 14.530, 15.799, 17.339, 19.249, 21.684, 24.900, 29.354, 35.957, 46.819,
-            68.369, 141.179,
+            13.465, 14.530, 15.799, 17.339, 19.249, 21.684, 24.900, 29.354, 35.957, 46.819, 68.369,
+            141.179,
         ];
 
         assert_eq!(result.len(), 12);

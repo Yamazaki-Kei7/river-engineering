@@ -49,9 +49,8 @@ mod tests {
 
     #[test]
     fn parse_required_args() {
-        let cli =
-            Cli::try_parse_from(["hyetograph-cli", "0.75", "5.411", "1557.825", "10", "2"])
-                .unwrap();
+        let cli = Cli::try_parse_from(["hyetograph-cli", "0.75", "5.411", "1557.825", "10", "2"])
+            .unwrap();
         assert_eq!(cli.a, 0.75);
         assert_eq!(cli.b, 5.411);
         assert_eq!(cli.c, 1557.825);
@@ -61,25 +60,22 @@ mod tests {
 
     #[test]
     fn default_pattern_is_center() {
-        let cli =
-            Cli::try_parse_from(["hyetograph-cli", "0.75", "5.411", "1557.825", "10", "2"])
-                .unwrap();
+        let cli = Cli::try_parse_from(["hyetograph-cli", "0.75", "5.411", "1557.825", "10", "2"])
+            .unwrap();
         assert_eq!(cli.pattern, DistributionPattern::Center);
     }
 
     #[test]
     fn default_output_is_hyetograph_png() {
-        let cli =
-            Cli::try_parse_from(["hyetograph-cli", "0.75", "5.411", "1557.825", "10", "2"])
-                .unwrap();
+        let cli = Cli::try_parse_from(["hyetograph-cli", "0.75", "5.411", "1557.825", "10", "2"])
+            .unwrap();
         assert_eq!(cli.output, PathBuf::from("hyetograph.png"));
     }
 
     #[test]
     fn default_format_is_png() {
-        let cli =
-            Cli::try_parse_from(["hyetograph-cli", "0.75", "5.411", "1557.825", "10", "2"])
-                .unwrap();
+        let cli = Cli::try_parse_from(["hyetograph-cli", "0.75", "5.411", "1557.825", "10", "2"])
+            .unwrap();
         assert_eq!(cli.format, OutputFormat::Png);
     }
 

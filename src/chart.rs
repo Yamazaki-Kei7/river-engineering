@@ -10,10 +10,7 @@ const DEFAULT_HEIGHT: u32 = 600;
 
 /// ハイエトグラフをPNG棒グラフとして描画する
 pub fn render(data: &[HyetographEntry], output_path: &Path, time_step: f64) -> Result<()> {
-    let max_intensity = data
-        .iter()
-        .map(|e| e.intensity)
-        .fold(0.0_f64, f64::max);
+    let max_intensity = data.iter().map(|e| e.intensity).fold(0.0_f64, f64::max);
     let max_time = data.last().map(|e| e.time_minutes).unwrap_or(0.0);
 
     let root = BitMapBackend::new(output_path, (DEFAULT_WIDTH, DEFAULT_HEIGHT)).into_drawing_area();

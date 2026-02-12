@@ -63,8 +63,7 @@ mod vba_compatibility {
         let data = run_and_get_csv("front");
         assert_eq!(data.len(), 12);
 
-        for (i, ((time, intensity), expected)) in
-            data.iter().zip(FRONT_EXPECTED.iter()).enumerate()
+        for (i, ((time, intensity), expected)) in data.iter().zip(FRONT_EXPECTED.iter()).enumerate()
         {
             assert_eq!(*time, 10.0 * (i + 1) as f64);
             let rounded = (intensity * 1000.0).round() / 1000.0;
@@ -84,9 +83,7 @@ mod vba_compatibility {
         let data = run_and_get_csv("center");
         assert_eq!(data.len(), 12);
 
-        for (i, ((_, intensity), expected)) in
-            data.iter().zip(CENTER_EXPECTED.iter()).enumerate()
-        {
+        for (i, ((_, intensity), expected)) in data.iter().zip(CENTER_EXPECTED.iter()).enumerate() {
             let rounded = (intensity * 1000.0).round() / 1000.0;
             assert!(
                 (rounded - expected).abs() < 1e-3,
@@ -134,8 +131,16 @@ mod vba_compatibility {
                 .status()
                 .expect("Failed to execute binary");
 
-            assert!(status.success(), "Pattern {}: should exit with code 0", pattern);
-            assert!(png_path.exists(), "Pattern {}: PNG file should exist", pattern);
+            assert!(
+                status.success(),
+                "Pattern {}: should exit with code 0",
+                pattern
+            );
+            assert!(
+                png_path.exists(),
+                "Pattern {}: PNG file should exist",
+                pattern
+            );
             let metadata = std::fs::metadata(&png_path).unwrap();
             assert!(
                 metadata.len() > 0,
@@ -184,7 +189,15 @@ mod error_cases {
     #[test]
     fn nonexistent_output_dir_returns_error() {
         let output = cargo_bin()
-            .args(["0.75", "5.411", "1557.825", "10", "2", "--output", "/nonexistent/dir/out.png"])
+            .args([
+                "0.75",
+                "5.411",
+                "1557.825",
+                "10",
+                "2",
+                "--output",
+                "/nonexistent/dir/out.png",
+            ])
             .output()
             .expect("Failed to execute binary");
 
